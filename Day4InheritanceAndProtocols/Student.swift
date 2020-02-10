@@ -10,11 +10,23 @@ import Foundation
 class Student: Person
 {
     lazy var marks = [String: Double]()//used to add marks manually
-    
-    override init(id: Int, name: String, gender: GENDER, marks : [String : Double]) {
+        
+        init(id: Int, name: String, gender: GENDER, marks : [String : Double]) {
         super.init(id:id,name:name,gender:gender)
         self.marks=marks
         
+    }
+    
+    subscript(code : String) -> Double
+    {
+        get
+        {
+            self.marks[code] ?? 0.0
+        }
+        set(newValue)
+        {
+            self.marks.updateValue(newValue, forKey: code)
+        }
     }
     
     var total: Double
